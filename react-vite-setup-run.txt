@@ -1,0 +1,13 @@
+Setup (you shouldn't need to do this, just for reference, or if you need to install anything)
+
+1. Install node with your installer (I use homebrew for Mac, had to uninstall and reinstall), check that "npm -v" gives you the current version and not an error
+2. Ensure node version >=20 (node -v)
+3. cd to directory where project will be (frontend folder in this case)\
+4. Run "npm create vite@latest"
+5. Choose your config options in setup, and for project name "." places project in current directory
+6. Run npm install (adds node modules)
+
+Running:
+
+1. cd to correct folder (frontend)
+2. Run "npm run dev"
