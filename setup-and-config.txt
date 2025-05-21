@@ -1,3 +1,5 @@
+## React - Vite
+
 Setup (you shouldn't need to do this, just for reference, or if you need to install anything)
 
 1. Install node with your installer (I use homebrew for Mac, had to uninstall and reinstall), check that "npm -v" gives you the current version and not an error
@@ -11,3 +13,14 @@ Running:
 
 1. cd to correct folder (frontend)
 2. Run "npm run dev"
+
+-----------------------------------------------
+
+## Setup and Updating .venv
+
+SETUP
+1. python -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
+
+UPDATING
+1. pip install package (make sure .venv is activated)
+2. pip freeze --exclude-editable > requirements.txt
