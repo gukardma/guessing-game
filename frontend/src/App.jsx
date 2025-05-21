@@ -8,15 +8,19 @@ function App() {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/questions') //api endpoint from flask server
+    fetch('http://localhost:5050/api/questions') //api endpoint from flask server
     .then(res => res.json()) // get data as json format
     .then(data => setQuestions(data));
+
+    setCount(1);
   }, []);
 
   if(questions.length === 0) {
     return(
       <>
         <p>No data :(</p>
+        {count}
+        {/* {questions} */}
       </>
     )
   }
