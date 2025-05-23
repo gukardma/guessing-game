@@ -4,22 +4,45 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0);
   const [questions, setQuestions] = useState([]);
+  const [resultState, setResultState] = useState(false);
+  const [answers, setAnswers] = useState([]);
+  const [questionIndex, setQuestionIndex] = useState(0);
 
   useEffect(() => {
     fetch('http://localhost:5050/api/questions') //api endpoint from flask server
     .then(res => res.json()) // get data as json format
-    .then(data => setQuestions(data));
-
-    setCount(1);
+    .then(data => {
+      setQuestions(shuffle(data));
+    
+    })  //shuffle question order
+    
+    
   }, []);
+
+  //chcek if result state should be enabled, otherwise save answer input and increment display question
+  const handleClick = (next_answer) => {
+    questionIndex >= questions.length - 1 ? setResultState(true) : setResultState(false);
+
+    if(!resultState){ //avoid null pointer error and extra answer logging
+      setAnswers(answers => [...answers, next_answer]);
+      setQuestionIndex(prevIndex => prevIndex + 1);
+    } 
+  }
+
+  //shuffle function
+  const shuffle = (array) => { 
+  for (let i = array.length - 1; i > 0; i--) { 
+    const j = Math.floor(Math.random() * (i + 1)); 
+    [array[i], array[j]] = [array[j], array[i]]; 
+  } 
+  return array; 
+};
 
   if(questions.length === 0) {
     return(
       <>
         <p>No data :(</p>
-        {count}
         {/* {questions} */}
       </>
     )
@@ -28,32 +51,18 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+        <h2>{resultState ? "Your result is: " : questions[questionIndex]}</h2>
+        <button disabled={resultState} onClick={() => handleClick(1)}>Yes</button>
+        <button disabled={resultState} onClick={() => handleClick(0)}>No</button>
+
+        <p>{answers}</p>
       
       <p>
         Fetched data from the db: {questions.map(item => <li>{item}</li>)}
-      </p>
+      </p>  
     </>
-  )
+    )
   }
 }
 
