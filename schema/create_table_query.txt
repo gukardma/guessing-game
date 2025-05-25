@@ -1,0 +1,42 @@
+## Template ##
+
+CREATE TABLE [IF NOT EXISTS] [schema_name].table_name (
+	column_1 data_type PRIMARY KEY,
+   	column_2 data_type NOT NULL,
+	column_3 data_type DEFAULT 0,
+	table_constraints
+) [WITHOUT ROWID];
+
+
+## Create questions table ##
+
+CREATE TABLE IF NOT EXISTS questions (
+	question_id INTEGER PRIMARY KEY,
+   	question_text TEXT NOT NULL
+) WITHOUT ROWID;
+
+
+## Create animals table ##
+
+CREATE TABLE IF NOT EXISTS animals (
+	animal_id INTEGER PRIMARY KEY,
+   	name TEXT NOT NULL
+) WITHOUT ROWID;
+
+## Create animal_answers table ##
+
+CREATE TABLE IF NOT EXISTS animal_answers (
+	animal_id INTEGER NOT NULL,
+   	question_id INTEGER NOT NULL,
+    answer INTEGER NOT NULL,
+    PRIMARY KEY (animal_id, question_id),
+    FOREIGN KEY (animal_id)
+        REFERENCES animals (animal_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+    FOREIGN KEY (question_id)
+        REFERENCES questions (question_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
