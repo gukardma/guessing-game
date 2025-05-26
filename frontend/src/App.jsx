@@ -57,6 +57,8 @@ function App() {
         <button disabled={resultState} onClick={() => handleClick(0)}>No</button>
 
         <p>{answers}</p>
+        {resultState ? <button onClick={() => window.location.reload()}>Submit</button> : null} 
+        {/* placeholder submit functionality*/}
       
       <p>
         Fetched data from the db: {questions.map(item => <li>{item}</li>)}

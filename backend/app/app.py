@@ -12,17 +12,24 @@ CORS(app)  # Enable CORS for frontend
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE = os.path.join(BASE_DIR, 'data.db')
 
+def get_sample_data():
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+    cursor.execute("SELECT animal_name FROM animals_csv ORDER BY animal_name DESC LIMIT 10;")
+    rows = cursor.fetchall()
+    conn.close()
+    return rows
+
 def get_questions():
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
-    cursor.execute("SELECT animal_name FROM animals ORDER BY animal_name DESC LIMIT 10;")
+    cursor.execute("SELECT question_text FROM questions")
     rows = cursor.fetchall()
     conn.close()
     return rows
 
 @app.route("/api/questions", methods=["GET"])
 def questions():
-    print("here")
     return jsonify(get_questions())
 
 if __name__ == "__main__":

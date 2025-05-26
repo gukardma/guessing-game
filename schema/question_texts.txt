@@ -1,0 +1,46 @@
+"Does your animal have hair/fur?"
+"Does your animal have feathers?"
+"Does your animal lay eggs?"
+"Does your animal have milk?"
+"Is your animal airborne?"
+"Is your animal aquatic?"
+"Is your animal primarily a predator?"
+"Is your animal toothed?"
+"Does your animal have a backbone?"
+"Does your animal breathe air?"
+"Is your animal venomous?"
+"Does your animal have fins?"
+"Does your animal have a tail?"
+"Is your animal domestic?"
+"Is your animal legless?"
+"Is your animal a quadruped?"
+"Is your animal a pet?"
+"Is your animal commonly active at night?"
+"Is your animal horned?"
+"Is your animal heavier than a house cat?"
+
+
+## insert questions into db ##
+
+INSERT INTO questions (question_text)
+VALUES 
+    ("Does your animal have hair/fur?"),
+    ("Does your animal have feathers?"),
+    ("Does your animal lay eggs?"),
+    ("Does your animal have milk?"),
+    ("Is your animal airborne?"),
+    ("Is your animal aquatic?"),
+    ("Is your animal primarily a predator?"),
+    ("Is your animal toothed?"),
+    ("Does your animal have a backbone?"),
+    ("Does your animal breathe air?"),
+    ("Is your animal venomous?"),
+    ("Does your animal have fins?"),
+    ("Does your animal have a tail?"),
+    ("Is your animal domestic?"),
+    ("Is your animal legless?"),
+    ("Is your animal a quadruped?"),
+    ("Is your animal a pet?"),
+    ("Is your animal commonly active at night?"),
+    ("Is your animal horned?"),
+    ("Is your animal heavier than a house cat?");
